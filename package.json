@@ -2,24 +2,27 @@
   "name": "atsdk",
   "version": "1.0.0",
   "description": "",
-  "main": "./dist/index.js",
-  "module": "./dist/index.m.js",
-  "unpkg": "./dist/index.umd.js",
-  "types": "./dist/index.d.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.m.js",
+  "unpkg": "dist/index.umd.js",
+  "types": "dist/index.d.ts",
   "exports": {
     "require": "./dist/index.js",
     "default": "./dist/index.modern.js"
   },
   "scripts": {
-    "build": "rimraf dist && microbundle --tsconfig tsconfig.json --no-sourcemap",
-    "dev": "microbundle --watch --tsconfig tsconfig.json --no-sourcemap"
+     "build": "webpack"
   },
   "keywords": [],
   "author": "Maycol EM - Apuesta Total",
   "license": "MIT",
   "devDependencies": {
     "microbundle": "^0.15.1",
-    "rimraf": "^5.0.7"
+    "rimraf": "^5.0.7",
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.4.5",
+    "webpack": "^5.91.0",
+    "webpack-cli": "^5.1.4"
   },
   "files": [
     "dist"
