@@ -45,4 +45,4 @@ abstract class AtsdkBase {
 class Atsdk extends AtsdkBase {}
 applyMixins(Atsdk, []);
 
-export default { Atsdk, events };
+export { Atsdk, events };

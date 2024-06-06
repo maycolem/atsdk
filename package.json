@@ -11,7 +11,7 @@
     "default": "./dist/index.modern.js"
   },
   "scripts": {
-    "build": "rimraf -rf dist && microbundle --tsconfig tsconfig.json --no-sourcemap",
+    "build": "rimraf dist && microbundle --tsconfig tsconfig.json --no-sourcemap",
     "dev": "microbundle --watch --tsconfig tsconfig.json --no-sourcemap"
   },
   "keywords": [],
