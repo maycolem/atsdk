@@ -2,10 +2,10 @@
   "name": "atsdk",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/index.js",
-  "module": "dist/index.m.js",
-  "unpkg": "dist/index.umd.js",
-  "types": "dist/index.d.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.m.js",
+  "unpkg": "./dist/index.umd.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     "require": "./dist/index.js",
     "default": "./dist/index.modern.js"
