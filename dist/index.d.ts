@@ -1,5 +1,5 @@
 import { events } from "./constants";
-declare abstract class Atsdk {
+declare abstract class AtsdkBase {
     iframe: any;
     notificationCallback: any;
     constructor();
@@ -15,5 +15,7 @@ declare abstract class Atsdk {
         recargaModalOpen: string;
         iframeWrapperConfig: string;
     };
+}
+declare class Atsdk extends AtsdkBase {
 }
 export { Atsdk, events };

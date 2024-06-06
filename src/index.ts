@@ -1,6 +1,7 @@
 import { events } from "./constants";
+import { applyMixins } from "./utils";
 
-abstract class Atsdk {
+abstract class AtsdkBase {
   iframe;
   notificationCallback;
   constructor() {
@@ -40,5 +41,8 @@ abstract class Atsdk {
     return events;
   }
 }
+
+class Atsdk extends AtsdkBase {}
+applyMixins(Atsdk, []);
 
 export { Atsdk, events };
