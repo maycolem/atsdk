@@ -1,14 +1,22 @@
-const Atsdk_events = {
+const Atsdk_events_iframe_to_parent = {
   MODAL_LOGIN_OPEN: "MODAL_LOGIN_OPEN",
   MODAL_RECARGA_OPEN: "MODAL_RECARGA_OPEN",
-  IFRAME_PROPS: "IFRAME_PROPS",
+  IFRAME_CONFIG: "IFRAME_CONFIG",
+};
+const Atsdk_events_parent_to_iframe = {
+  LOGIN_SUCESS: "LOGIN_SUCESS",
+};
+const Atsdk_events = {
+  ...Atsdk_events_iframe_to_parent,
+  ...Atsdk_events_parent_to_iframe,
 };
 
 class Atsdk {
   iframe;
   notificationCallback;
   constructor() {
-    window.addEventListener("message", (data) => this.receiveMessage(data));
+    const eventListener = "message";
+    window.addEventListener(eventListener, (data) => this.receiveMessage(data));
   }
 
   setIframe(iframe) {
@@ -36,6 +44,14 @@ class Atsdk {
     // if (event.origin !== window.location.origin) {
     //   return;
     // }
+  }
+
+  getEvents() {
+    return {
+      all: { ...Atsdk_events },
+      iframe_to_parent: { ...Atsdk_events_iframe_to_parent },
+      parent_to_iframe: { ...Atsdk_events_parent_to_iframe },
+    };
   }
 }
 
