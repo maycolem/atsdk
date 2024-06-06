@@ -1,4 +1,3 @@
-import { events } from "./constants";
 declare abstract class AtsdkBase {
     iframe: any;
     notificationCallback: any;
@@ -18,4 +17,13 @@ declare abstract class AtsdkBase {
 }
 declare class Atsdk extends AtsdkBase {
 }
-export { Atsdk, events };
+declare const _default: {
+    Atsdk: typeof Atsdk;
+    events: {
+        loginModalOpen: string;
+        loginSuccess: string;
+        recargaModalOpen: string;
+        iframeWrapperConfig: string;
+    };
+};
+export default _default;
