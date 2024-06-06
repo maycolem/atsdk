@@ -1,4 +1,4 @@
-declare class AtsdkBase {
+export declare abstract class Atsdk {
     iframe: any;
     notificationCallback: any;
     constructor();
@@ -18,9 +18,5 @@ declare class AtsdkBase {
             LOGIN_SUCESS: string;
         };
     };
-}
-declare class Atsdk extends AtsdkBase {
-}
-interface Atsdk extends AtsdkBase {
 }
 export default Atsdk;
