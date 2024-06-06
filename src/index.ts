@@ -1,6 +1,6 @@
 import { Atsdk_events, Atsdk_events_iframe_to_parent, Atsdk_events_parent_to_iframe } from "./constants";
 
-class AtsdkBase {
+export abstract class Atsdk {
   iframe;
   notificationCallback;
   constructor() {
@@ -43,8 +43,5 @@ class AtsdkBase {
     };
   }
 }
-
-class Atsdk extends AtsdkBase {}
-interface Atsdk extends AtsdkBase {}
 
 export default Atsdk;
