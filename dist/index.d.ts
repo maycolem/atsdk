@@ -1,4 +1,5 @@
-export declare abstract class Atsdk {
+import { events } from "./constants";
+declare abstract class Atsdk {
     iframe: any;
     notificationCallback: any;
     constructor();
@@ -9,14 +10,10 @@ export declare abstract class Atsdk {
     sendMessageToParent(message: any): void;
     receiveMessage(event: any): void;
     getEvents(): {
-        iframe_to_parent: {
-            MODAL_LOGIN_OPEN: string;
-            MODAL_RECARGA_OPEN: string;
-            IFRAME_CONFIG: string;
-        };
-        parent_to_iframe: {
-            LOGIN_SUCESS: string;
-        };
+        loginModalOpen: string;
+        loginSuccess: string;
+        recargaModalOpen: string;
+        iframeWrapperConfig: string;
     };
 }
-export default Atsdk;
+export { Atsdk, events };
