@@ -1,6 +1,6 @@
-import { Atsdk_events, Atsdk_events_iframe_to_parent, Atsdk_events_parent_to_iframe } from "./constants";
+import { events } from "./constants";
 
-export abstract class Atsdk {
+abstract class Atsdk {
   iframe;
   notificationCallback;
   constructor() {
@@ -29,7 +29,7 @@ export abstract class Atsdk {
   }
 
   receiveMessage(event) {
-    if (Atsdk_events[event.data.event]) {
+    if (events[event.data.event]) {
       if (this.notificationCallback) {
         this.notificationCallback(event.data);
       }
@@ -37,11 +37,8 @@ export abstract class Atsdk {
   }
 
   getEvents() {
-    return {
-      iframe_to_parent: { ...Atsdk_events_iframe_to_parent },
-      parent_to_iframe: { ...Atsdk_events_parent_to_iframe },
-    };
+    return events;
   }
 }
 
-export default Atsdk;
+export { Atsdk, events };
