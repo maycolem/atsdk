@@ -11,18 +11,18 @@
     "default": "./dist/index.modern.js"
   },
   "scripts": {
-     "build": "webpack"
+    "build": "rimraf -rf dist && microbundle --tsconfig tsconfig.json --no-sourcemap",
+    "dev": "microbundle --watch --tsconfig tsconfig.json --no-sourcemap"
   },
   "keywords": [],
-  "author": "Maycol EM - Apuesta Total",
+  "author": "Maycol EM",
   "license": "MIT",
   "devDependencies": {
-    "microbundle": "^0.15.1",
-    "rimraf": "^5.0.7",
-    "ts-loader": "^9.5.1",
-    "typescript": "^5.4.5",
-    "webpack": "^5.91.0",
-    "webpack-cli": "^5.1.4"
+    "microbundle": "0.15.0",
+    "rimraf": "^5.0.7"
+  },
+  "dependencies": {
+    "isomorphic-unfetch": "^3.1.0"
   },
   "files": [
     "dist"
