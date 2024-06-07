@@ -1,17 +1,13 @@
 {
   "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
     "strict": true,
-    "noImplicitAny": false,
     "esModuleInterop": true,
-    "strictNullChecks": true,
-    "target": "ES2022",
-    "moduleResolution": "Node10",
-    "module": "CommonJS",
-    "declaration": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "outDir": "dist"
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitAny": false
   },
-  "include": ["src"],
+  "include": ["src/**/*"],
   "exclude": ["node_modules"]
 }
