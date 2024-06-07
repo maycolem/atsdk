@@ -7,24 +7,14 @@
   "version": "1.0.3",
   "description": "A component library for getting people started with easy to re-use components for everyday projects.",
   "main": "index.js",
-  "files": [
-    "dist"
-  ],
   "scripts": {
     "build": "tsup src/index.ts --format cjs,esm --dts"
   },
   "author": "Maycol EM",
   "license": "MIT",
   "devDependencies": {
-    "tsup": "^8.1.0",
-    "typescript": "^4.5.2"
-  },
-  "dependencies": {
-    "@types/node": "^20.14.2"
-  },
-  "bugs": {
-    "url": "https://github.com/maycolem/atsdk/issues"
-  },
-  "homepage": "https://github.com/maycolem/atsdk#readme",
-  "keywords": []
+    "@types/node": "^20.14.2",
+    "@typescript": "^4.9.3",
+    "tsup": "^6.6.3"
+  }
 }
