@@ -4,17 +4,20 @@
     "type": "git",
     "url": "git+https://github.com/maycolem/atsdk.git"
   },
-  "version": "1.0.3",
+  "version": "1.0.6",
   "description": "A component library for getting people started with easy to re-use components for everyday projects.",
-  "main": "index.js",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "scripts": {
-    "build": "tsup src/index.ts --format cjs,esm --dts"
+    "build": "tsup src/index.ts --format cjs,esm,iife --dts"
   },
   "author": "Maycol EM",
   "license": "MIT",
   "devDependencies": {
-    "@types/node": "^20.14.2",
-    "@typescript": "^4.9.3",
-    "tsup": "^6.6.3"
+    "@swc/core": "^1.5.25",
+    "@types/node": "^18.14.0",
+    "tsup": "^6.6.3",
+    "typescript": "^4.9.5"
   }
 }

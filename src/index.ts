@@ -1,24 +1,26 @@
-import { events } from "./constants";
+import { Events, Notification, NotificationCallback } from "./types";
 import { applyMixins } from "./utils";
 
 abstract class AtsdkBase {
-  iframe;
-  notificationCallback;
+  iframe: HTMLIFrameElement | undefined;
+  notificationCallback: NotificationCallback | undefined;
   constructor() {
     const eventListener = "message";
-    window.addEventListener(eventListener, (data) => this.receiveMessage(data));
+    window.addEventListener(eventListener, (message: MessageEvent<Notification>) => this.receiveMessage(message));
   }
 
-  setIframe(iframe) {
+  setIframe(iframe: HTMLIFrameElement) {
     this.iframe = iframe;
   }
 
-  setNotificationCallback(notification) {
+  setNotificationCallback(notification: NotificationCallback) {
     this.notificationCallback = notification;
   }
 
   sendMessageToIframe(message) {
-    this.iframe.contentWindow.postMessage(message, "*");
+    if (this.iframe && this.iframe.contentWindow) {
+      this.iframe.contentWindow.postMessage(message, "*");
+    }
   }
 
   sendMessageToTopAncestor(message) {
@@ -31,20 +33,24 @@ abstract class AtsdkBase {
     window.parent.postMessage(message, "*");
   }
 
-  receiveMessage(event) {
-    if (events[event.data.event]) {
-      if (this.notificationCallback) {
-        this.notificationCallback(event.data);
-      }
+  receiveMessage(message: MessageEvent<Notification>) {
+    if (Events[message.data.event] && this.notificationCallback) {
+      this.notificationCallback(message.data);
     }
   }
 
   getEvents() {
-    return events;
+    return Events;
   }
 }
 
 class Atsdk extends AtsdkBase {}
 applyMixins(Atsdk, []);
 
-export { Atsdk, events };
+((w) => {
+  if (w) {
+    w.Atsdk = new Atsdk();
+  }
+})(window);
+
+export { Atsdk, Events };
