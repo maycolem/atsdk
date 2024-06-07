@@ -1,1 +1,88 @@
-function t(e,o){return t=Object.setPrototypeOf?Object.setPrototypeOf.bind():function(t,e){return t.__proto__=e,t},t(e,o)}var e,o={loginModalOpen:"loginModalOpen",loginSuccess:"loginSuccess",recargaModalOpen:"recargaModalOpen",iframeWrapperConfig:"iframeWrapperConfig"},n=/*#__PURE__*/function(e){function o(){return e.apply(this,arguments)||this}var n,i;return i=e,(n=o).prototype=Object.create(i.prototype),n.prototype.constructor=n,t(n,i),o}(/*#__PURE__*/function(){function t(){var t=this;this.iframe=void 0,this.notificationCallback=void 0,window.addEventListener("message",function(e){return t.receiveMessage(e)})}var e=t.prototype;return e.setIframe=function(t){this.iframe=t},e.setNotificationCallback=function(t){this.notificationCallback=t},e.sendMessageToIframe=function(t){this.iframe.contentWindow.postMessage(t,"*")},e.sendMessageToTopAncestor=function(t){window.top.postMessage(t,"*")},e.sendMessageToParent=function(t){window.parent.postMessage(t,"*")},e.receiveMessage=function(t){o[t.data.event]&&this.notificationCallback&&this.notificationCallback(t.data)},e.getEvents=function(){return o},t}());e=n,[].forEach(function(t){Object.getOwnPropertyNames(t.prototype).forEach(function(o){Object.defineProperty(e.prototype,o,Object.getOwnPropertyDescriptor(t.prototype,o))})}),exports.Atsdk=n,exports.events=o;
+"use strict";
+var __defProp = Object.defineProperty;
+var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+var __getOwnPropNames = Object.getOwnPropertyNames;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __export = (target, all) => {
+  for (var name in all)
+    __defProp(target, name, { get: all[name], enumerable: true });
+};
+var __copyProps = (to, from, except, desc) => {
+  if (from && typeof from === "object" || typeof from === "function") {
+    for (let key of __getOwnPropNames(from))
+      if (!__hasOwnProp.call(to, key) && key !== except)
+        __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+  }
+  return to;
+};
+var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+
+// src/index.ts
+var src_exports = {};
+__export(src_exports, {
+  Atsdk: () => Atsdk,
+  events: () => events
+});
+module.exports = __toCommonJS(src_exports);
+
+// src/constants.ts
+var events = {
+  loginModalOpen: "loginModalOpen",
+  loginSuccess: "loginSuccess",
+  recargaModalOpen: "recargaModalOpen",
+  iframeWrapperConfig: "iframeWrapperConfig"
+};
+
+// src/utils.ts
+function applyMixins(derivedCtor, baseCtors) {
+  baseCtors.forEach((baseCtor) => {
+    Object.getOwnPropertyNames(baseCtor.prototype).forEach((name) => {
+      Object.defineProperty(derivedCtor.prototype, name, Object.getOwnPropertyDescriptor(baseCtor.prototype, name));
+    });
+  });
+}
+
+// src/index.ts
+var AtsdkBase = class {
+  iframe;
+  notificationCallback;
+  constructor() {
+    const eventListener = "message";
+    window.addEventListener(eventListener, (data) => this.receiveMessage(data));
+  }
+  setIframe(iframe) {
+    this.iframe = iframe;
+  }
+  setNotificationCallback(notification) {
+    this.notificationCallback = notification;
+  }
+  sendMessageToIframe(message) {
+    this.iframe.contentWindow.postMessage(message, "*");
+  }
+  sendMessageToTopAncestor(message) {
+    if (window.top) {
+      window.top.postMessage(message, "*");
+    }
+  }
+  sendMessageToParent(message) {
+    window.parent.postMessage(message, "*");
+  }
+  receiveMessage(event) {
+    if (events[event.data.event]) {
+      if (this.notificationCallback) {
+        this.notificationCallback(event.data);
+      }
+    }
+  }
+  getEvents() {
+    return events;
+  }
+};
+var Atsdk = class extends AtsdkBase {
+};
+applyMixins(Atsdk, []);
+// Annotate the CommonJS export names for ESM import in node:
+0 && (module.exports = {
+  Atsdk,
+  events
+});

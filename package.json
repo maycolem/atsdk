@@ -2,24 +2,27 @@
   "name": "atsdk",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/index.js",
-  "module": "dist/index.m.js",
-  "unpkg": "dist/index.umd.js",
-  "types": "dist/index.d.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.m.js",
+  "unpkg": "./dist/index.umd.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     "require": "./dist/index.js",
     "default": "./dist/index.modern.js"
   },
   "scripts": {
     "build": "rimraf dist && microbundle --tsconfig tsconfig.json --no-sourcemap",
-    "dev": "microbundle --watch --tsconfig tsconfig.json --no-sourcemap"
+    "dev": "microbundle --watch --tsconfig tsconfig.json --no-sourcemap",
+    "build2" : "tsup"
   },
   "keywords": [],
   "author": "Maycol EM",
   "license": "MIT",
   "devDependencies": {
     "microbundle": "0.15.0",
-    "rimraf": "^5.0.7"
+    "rimraf": "^5.0.7",
+    "tsup": "^8.1.0",
+    "typescript": "^5.4.5"
   },
   "dependencies": {
     "isomorphic-unfetch": "^3.1.0"

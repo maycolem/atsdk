@@ -1,15 +1,17 @@
 {
   "compilerOptions": {
-    "module": "es6",
+    "strict": true,
+    "noImplicitAny": false,
+    "esModuleInterop": true,
+    "strictNullChecks": true,
+    "target": "ES2022",
+    "moduleResolution": "Node10",
+    "module": "CommonJS",
     "declaration": true,
-    "removeComments": true,
-    "allowSyntheticDefaultImports": true,
-    "target": "es2017",
-    "sourceMap": false,
-    "outDir": "./dist",
-    "baseUrl": "./",
-    "incremental": true
+    "isolatedModules": true,
+    "noEmit": true,
+    "outDir": "dist"
   },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "test", "lib", "**/*spec.ts"]
+  "include": ["src"],
+  "exclude": ["node_modules"]
 }
