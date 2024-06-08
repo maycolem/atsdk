@@ -35,7 +35,7 @@ type NotificationCallback = (notification: Notification) => void;
 
 declare global {
     interface Window {
-        Atsdk: Atsdk;
+        Atsdk: any;
     }
 }
 

@@ -4,7 +4,7 @@
     "type": "git",
     "url": "git+https://github.com/maycolem/atsdk.git"
   },
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "A component library for getting people started with easy to re-use components for everyday projects.",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",

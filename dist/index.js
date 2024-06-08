@@ -230,10 +230,17 @@ var Atsdk = /*#__PURE__*/ function(AtsdkBase) {
 }(AtsdkBase);
 applyMixins(Atsdk, []);
 (function(w) {
+    "use strict";
     if (w) {
-        w.Atsdk = new Atsdk();
+        if (!w.Atsdk) {
+            w.Atsdk = Atsdk;
+        } else {
+            console.warn("Atsdk ya est\xE1 definido en el objeto window.");
+        }
+    } else {
+        console.error("El objeto window no est\xE1 disponible.");
     }
-})(window);
+})(typeof window !== "undefined" ? window : null);
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
     Atsdk: Atsdk,

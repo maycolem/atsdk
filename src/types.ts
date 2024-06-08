@@ -1,5 +1,3 @@
-import { Atsdk } from ".";
-
 enum Events {
   LoginModalOpen = "LoginModalOpen",
   LoginSuccess = "LoginSuccess",
@@ -42,6 +40,6 @@ export { Events, NotificationCallback, Notification };
 
 declare global {
   interface Window {
-    Atsdk: Atsdk;
+    Atsdk: any;
   }
 }
