@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- <meta http-equiv="Content-Security-Policy" content="frame-ancestors 'self' http://localhost:3012/" /> -->
+
+    <style>
+      *,
+      *::after,
+      *::before {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        min-height: 100vh;
+        min-height: 100dvh;
+        display: grid;
+        place-items: center;
+      }
+      button {
+        padding: 1rem;
+        background: red;
+        text-align: center;
+        margin: auto;
+        min-width: 200px;
+        border: 0;
+        margin: 0;
+        border-radius: 1rem;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      button.recarga {
+        background: black;
+      }
+
+      section {
+        min-height: 600px;
+        background: green;
+        display: grid;
+        place-content: center;
+        width: 100%;
+      }
+      section.two {
+        background: blue;
+      }
+    </style>
+    <!-- <script src="https://maycolem.github.io/atsdk/dist/index.global.js"></script> -->
+    <script src="http://127.0.0.1:60975/dist/index.global.js"></script>
+  </head>
+  <body>
+    <header>aaa</header>
+    <br />
+    <button class="login" onclick="loginModalOpen()">OPEN LOGIN MODAL</button>
+    <br />
+    <button class="recarga" onclick="recargaModalOpen()">OPEN RECARGA MODAL</button>
+    <br />
+    <section class="one" id="one">1</section>
+    <br />
+    <section class="two" id="two">2</section>
+    <!-- <script crossorigin="anonymous" src="https://maycolem.github.io/atsdk/atsdk.js"></script> -->
+    <script>
+      const atsdk = new window.Atsdk();
+      // const { IframeWrapperConfig, LoginModalOpen, LoginSuccess, RecargaModalOpen } = atsdk.getEvents();
+      const events = atsdk.getEvents();
+
+      console.log(events);
+
+      atsdk.setNotificationCallback(async function (notification) {
+        switch (notification.event) {
+          case events.LoginSuccess:
+            const element = document.querySelector("section#two");
+            element.scrollIntoView({ block: "start", behavior: "smooth" });
+            break;
+        }
+      });
+
+      function loginModalOpen() {
+        atsdk.sendMessageToParent({
+          event: events.LoginModalOpen,
+          data: {
+            message: "Logeate para poder sincronizar tus datos con el Sorteo.",
+            alias: "maycol.elcorrobarrutia@apuestatotal.com", // colocar en el login el alias obtenido de la api de calimaco
+            redirectUrl: "http://127.0.0.1:5500/index.html/#id",
+          },
+        });
+      }
+      function recargaModalOpen() {
+        atsdk.sendMessageToParent({
+          event: events.RecargaModalOpen,
+        });
+      }
+
+      function setIframeWrapperConfig(height) {
+        atsdk.sendMessageToParent({
+          event: events.IframeWrapperConfig,
+          data: {
+            height: height,
+          },
+        });
+      }
+      const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+      window.addEventListener("load", async () => {
+        // Selecciona el cuerpo de la página
+        await delay(500);
+        const body = document.body;
+        const currentHeight = body.offsetHeight;
+        setIframeWrapperConfig(currentHeight);
+
+        // Crea un nuevo observador de mutaciones
+        const observer = new MutationObserver((mutations) => {
+          mutations.forEach((mutation) => {
+            // Verifica si la mutación afecta al estilo (puede ser una modificación en la altura)
+            if (mutation.type === "attributes" && mutation.attributeName === "style") {
+              // Obtiene la altura actual del cuerpo
+              const currentHeight = body.offsetHeight;
+              setIframeWrapperConfig(currentHeight);
+              // Aquí puedes realizar cualquier acción adicional basada en el cambio de altura
+            }
+          });
+        });
+
+        // Configura las opciones del observador (en este caso, observaremos cambios en los atributos)
+        const observerConfig = { attributes: true };
+
+        // Empieza a observar el cuerpo con las opciones configuradas
+        observer.observe(body, observerConfig);
+        // desconectar el observador
+        //   observer.disconnect();
+      });
+    </script>
+  </body>
+</html>

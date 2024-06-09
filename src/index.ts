@@ -17,19 +17,19 @@ abstract class AtsdkBase {
     this.notificationCallback = notification;
   }
 
-  sendMessageToIframe(message) {
+  sendMessageToIframe(message: Notification) {
     if (this.iframe && this.iframe.contentWindow) {
       this.iframe.contentWindow.postMessage(message, "*");
     }
   }
 
-  sendMessageToTopAncestor(message) {
+  sendMessageToTopAncestor(message: Notification) {
     if (window.top) {
       window.top.postMessage(message, "*");
     }
   }
 
-  sendMessageToParent(message) {
+  sendMessageToParent(message: Notification) {
     window.parent.postMessage(message, "*");
   }
 

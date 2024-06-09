@@ -1,0 +1,12 @@
+{
+  "name": "test2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "live-server --port=8081"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
