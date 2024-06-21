@@ -1,5 +1,6 @@
 enum Events {
   LoginModalOpen = "LoginModalOpen",
+  LoginModalMessi10Open = "LoginModalMessi10Open",
   LoginSuccess = "LoginSuccess",
   RecargaModalOpen = "RecargaModalOpen",
   IframeWrapperConfig = "IframeWrapperConfig",
@@ -12,6 +13,8 @@ interface NotificationLoginModalOpen {
     redirectUrl?: string;
   };
 }
+interface LoginModalMessi10Open extends NotificationLoginModalOpen {}
+
 interface NotificationLoginSuccess {
   event: Events.LoginSuccess;
   data: {
@@ -32,7 +35,12 @@ interface NotificationIframeWrapperConfig {
   };
 }
 
-type Notification = NotificationLoginModalOpen | NotificationLoginSuccess | NotificationRecargaModalOpen | NotificationIframeWrapperConfig;
+type Notification =
+  | NotificationLoginModalOpen
+  | LoginModalMessi10Open
+  | NotificationLoginSuccess
+  | NotificationRecargaModalOpen
+  | NotificationIframeWrapperConfig;
 
 type NotificationCallback = (notification: Notification) => void;
 

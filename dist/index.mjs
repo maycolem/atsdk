@@ -1,6 +1,7 @@
 // src/types.ts
 var Events = /* @__PURE__ */ ((Events2) => {
   Events2["LoginModalOpen"] = "LoginModalOpen";
+  Events2["LoginModalMessi10Open"] = "LoginModalMessi10Open";
   Events2["LoginSuccess"] = "LoginSuccess";
   Events2["RecargaModalOpen"] = "RecargaModalOpen";
   Events2["IframeWrapperConfig"] = "IframeWrapperConfig";
@@ -20,7 +21,10 @@ function applyMixins(derivedCtor, baseCtors) {
 var AtsdkBase = class {
   constructor() {
     const eventListener = "message";
-    window.addEventListener(eventListener, (message) => this.receiveMessage(message));
+    window.addEventListener(
+      eventListener,
+      (message) => this.receiveMessage(message)
+    );
   }
   setIframe(iframe) {
     this.iframe = iframe;

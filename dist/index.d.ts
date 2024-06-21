@@ -1,5 +1,6 @@
 declare enum Events {
     LoginModalOpen = "LoginModalOpen",
+    LoginModalMessi10Open = "LoginModalMessi10Open",
     LoginSuccess = "LoginSuccess",
     RecargaModalOpen = "RecargaModalOpen",
     IframeWrapperConfig = "IframeWrapperConfig"
@@ -10,6 +11,8 @@ interface NotificationLoginModalOpen {
         email?: string;
         redirectUrl?: string;
     };
+}
+interface LoginModalMessi10Open extends NotificationLoginModalOpen {
 }
 interface NotificationLoginSuccess {
     event: Events.LoginSuccess;
@@ -30,7 +33,7 @@ interface NotificationIframeWrapperConfig {
         width?: string;
     };
 }
-type Notification = NotificationLoginModalOpen | NotificationLoginSuccess | NotificationRecargaModalOpen | NotificationIframeWrapperConfig;
+type Notification = NotificationLoginModalOpen | LoginModalMessi10Open | NotificationLoginSuccess | NotificationRecargaModalOpen | NotificationIframeWrapperConfig;
 type NotificationCallback = (notification: Notification) => void;
 
 declare global {
@@ -45,9 +48,9 @@ declare abstract class AtsdkBase {
     constructor();
     setIframe(iframe: HTMLIFrameElement): void;
     setNotificationCallback(notification: NotificationCallback): void;
-    sendMessageToIframe(message: any): void;
-    sendMessageToTopAncestor(message: any): void;
-    sendMessageToParent(message: any): void;
+    sendMessageToIframe(message: Notification): void;
+    sendMessageToTopAncestor(message: Notification): void;
+    sendMessageToParent(message: Notification): void;
     receiveMessage(message: MessageEvent<Notification>): void;
     getEvents(): typeof Events;
 }

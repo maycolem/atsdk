@@ -6,7 +6,10 @@ abstract class AtsdkBase {
   notificationCallback: NotificationCallback | undefined;
   constructor() {
     const eventListener = "message";
-    window.addEventListener(eventListener, (message: MessageEvent<Notification>) => this.receiveMessage(message));
+    window.addEventListener(
+      eventListener,
+      (message: MessageEvent<Notification>) => this.receiveMessage(message)
+    );
   }
 
   setIframe(iframe: HTMLIFrameElement) {

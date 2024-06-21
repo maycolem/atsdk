@@ -96,6 +96,7 @@ function _create_super(Derived) {
     // src/types.ts
     var Events = /* @__PURE__ */ function(Events2) {
         Events2["LoginModalOpen"] = "LoginModalOpen";
+        Events2["LoginModalMessi10Open"] = "LoginModalMessi10Open";
         Events2["LoginSuccess"] = "LoginSuccess";
         Events2["RecargaModalOpen"] = "RecargaModalOpen";
         Events2["IframeWrapperConfig"] = "IframeWrapperConfig";
