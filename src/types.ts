@@ -13,7 +13,13 @@ interface NotificationLoginModalOpen {
     redirectUrl?: string;
   };
 }
-interface LoginModalMessi10Open extends NotificationLoginModalOpen {}
+interface NotificationLoginModalMessi10Open {
+  event: Events.LoginModalMessi10Open;
+  data: {
+    email?: string;
+    redirectUrl?: string;
+  };
+}
 
 interface NotificationLoginSuccess {
   event: Events.LoginSuccess;
@@ -37,7 +43,7 @@ interface NotificationIframeWrapperConfig {
 
 type Notification =
   | NotificationLoginModalOpen
-  | LoginModalMessi10Open
+  | NotificationLoginModalMessi10Open
   | NotificationLoginSuccess
   | NotificationRecargaModalOpen
   | NotificationIframeWrapperConfig;
