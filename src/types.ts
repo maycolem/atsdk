@@ -8,7 +8,7 @@ enum Events {
 
 interface NotificationLoginModalOpen {
   event: Events.LoginModalOpen;
-  data: {
+  data?: {
     email?: string;
     redirectUrl?: string;
   };
@@ -23,7 +23,7 @@ interface NotificationLoginModalMessi10Open {
 
 interface NotificationLoginSuccess {
   event: Events.LoginSuccess;
-  data: {
+  data?: {
     email?: string;
     mobile?: string;
     dni?: string;
@@ -31,11 +31,11 @@ interface NotificationLoginSuccess {
 }
 interface NotificationRecargaModalOpen {
   event: Events.RecargaModalOpen;
-  data: {};
+  data?: {};
 }
 interface NotificationIframeWrapperConfig {
   event: Events.IframeWrapperConfig;
-  data: {
+  data?: {
     height?: string;
     width?: string;
   };
